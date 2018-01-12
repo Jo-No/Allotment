@@ -1,13 +1,7 @@
 package com.example.jno14.moveggiesmoproblems
 
-import android.app.Activity
-import android.app.Fragment
-import android.app.FragmentManager
-import android.app.FragmentTransaction
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.example.jno14.moveggiesmoproblems.R.id.add
-import com.example.jno14.moveggiesmoproblems.R.id.fragment
 
 class PlotLayoutActivity : AppCompatActivity() {
 
@@ -15,12 +9,19 @@ class PlotLayoutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plot_layout)
 
+//        var addPlot = findViewById<FloatingActionButton>(R.id.add_plot_button)
+//        addPlot.setOnClickListener { _ ->
+//            addFragment(AddPlotFragment())
+//        }
     }
-//
-//    inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
-//        val fragmentTransaction = beginTransaction()
-//        fragmentTransaction.func()
-//        fragmentTransaction.commit()
-//
+
+//    private fun addFragment(fragment: AddPlotFragment) {
+//        supportFragmentManager
+//                .beginTransaction()
+//                .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
+//                .add(R.id.activity_plot_layout, fragment, fragment.javaClass.simpleName)
+//                .addToBackStack(fragment.javaClass.simpleName)
+//                .commit()
 //    }
+
 }

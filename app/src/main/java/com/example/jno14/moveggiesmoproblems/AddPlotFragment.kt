@@ -9,7 +9,7 @@ import android.view.ViewGroup
 /**
  * A placeholder fragment containing a simple view.
  */
-class PlotLayoutActivityFragment : Fragment() {
+class AddPlotFragment : Fragment() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,12 +17,12 @@ class PlotLayoutActivityFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_plot_layout, container, false)
+        return inflater.inflate(R.layout.fragment_add_plot, container, false)
     }
 
     companion object {
-        fun newInstance(): PlotLayoutActivityFragment {
-            val fragment = PlotLayoutActivityFragment()
+        fun newInstance(): AddPlotFragment {
+            val fragment = AddPlotFragment()
             val args = Bundle()
             fragment.arguments = args
             return fragment

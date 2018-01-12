@@ -22,27 +22,6 @@ class MonthlyJobsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_monthly_jobs)
 
-//        val spinner = findViewById<Spinner>(R.id.months_spinner)
-//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-//                val monthSelected = parent.getItemAtPosition(position).toString()
-//                if (monthSelected.equals("")) {
-//                } else {
-//                    TaskAdapter.performSorting(monthSelected)
-//                }
-//            }
-//          override fun onNothingSelected(parent: AdapterView<*>) {
-//            }
-//        }
-//        fun performSorting(monthSelected: String){
-//            //get spinner pos
-//            tasks.sortedBy { it.position.first }
-//            //reload
-//        }
-//        val dataAdapter = ArrayAdapter.createFromResource(this, R.array.months_array, android.R.layout.simple_spinner_item)
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        spinner.adapter = dataAdapter
-
         val recyclerView = task_list as RecyclerView
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -52,7 +31,6 @@ class MonthlyJobsActivity : AppCompatActivity() {
         fab.setOnClickListener { _ ->
             val intent = Intent(this, AddTaskActivity::class.java)
             startActivityForResult(intent, ADD_TASK_REQUEST)
-//            addFragment(MonthlyJobsFragment())
         }
     }
 
@@ -83,13 +61,13 @@ class MonthlyJobsActivity : AppCompatActivity() {
         val MONTH_TEXT = "month"
     }
 
-    private fun addFragment(fragment: MonthlyJobsFragment) {
-        supportFragmentManager
-                .beginTransaction()
-                .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
-                .add(R.id.monthly_jobs_layout, fragment, fragment.javaClass.simpleName)
-                .addToBackStack(fragment.javaClass.simpleName)
-                .commit()
-    }
+//    private fun addFragment(fragment: MonthlyJobsFragment) {
+//        supportFragmentManager
+//                .beginTransaction()
+//                .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
+//                .add(R.id.monthly_jobs_layout, fragment, fragment.javaClass.simpleName)
+//                .addToBackStack(fragment.javaClass.simpleName)
+//                .commit()
+//    }
 
 }

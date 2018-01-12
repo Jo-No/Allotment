@@ -2,6 +2,7 @@
     <string name="app_name">MoVeggiesMoProblems</string>
     <string name="title_home">Home</string>
     <string name="title_plot">Plot Layout</string>
+    <string name="title_add_plot">Add Plot Layout</string>
     <string name="title_jobs">Monthly Jobs</string>
 
     <string name="title_activity_plot_layout">PlotLayoutActivity</string>
@@ -27,5 +28,12 @@
     <string name="description">Description</string>
     <string name="month">Month</string>
     <string name="submit">Submit</string>
+
+    <string name="add_plot">Add new plot</string>
+    <string name="plot_one">Plot 1</string>
+    <string name="plot_two">Plot 2</string>
+    <string name="plot_three">Plot 3</string>
+    <string name="plot_four">Plot 4</string>
+
 
 </resources>

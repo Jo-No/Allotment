@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jno14.moveggiesmoproblems.PlotLayoutActivityFragment"
+    android:id="@+id/add_plot_fragment"
+    tools:context="com.example.jno14.moveggiesmoproblems.AddPlotFragment"
     tools:showIn="@layout/activity_plot_layout">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_plot"/>
 
 </android.support.constraint.ConstraintLayout>
