@@ -22,7 +22,7 @@
                 android:text="@string/plot_one"/>
             <EditText
                 android:id="@+id/plot_one"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
 
@@ -36,7 +36,7 @@
                 android:text="@string/plot_two"/>
             <EditText
                 android:id="@+id/plot_two"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
 
@@ -50,7 +50,7 @@
                 android:text="@string/plot_three"/>
             <EditText
                 android:id="@+id/plot_three"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
 
@@ -64,8 +64,9 @@
                 android:text="@string/plot_four"/>
             <EditText
                 android:id="@+id/plot_four"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/plot_vegetables"/>
 
         </RelativeLayout>
     </LinearLayout>
