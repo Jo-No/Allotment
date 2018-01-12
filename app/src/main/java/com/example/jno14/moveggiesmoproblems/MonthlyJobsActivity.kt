@@ -52,6 +52,7 @@ class MonthlyJobsActivity : AppCompatActivity() {
         fab.setOnClickListener { _ ->
             val intent = Intent(this, AddTaskActivity::class.java)
             startActivityForResult(intent, ADD_TASK_REQUEST)
+//            addFragment(MonthlyJobsFragment())
         }
     }
 
@@ -65,7 +66,7 @@ class MonthlyJobsActivity : AppCompatActivity() {
     override fun onResume(){
         super.onResume()
 
-        val tasks = Storage.readData(context = MonthlyJobsActivity()) //TODO FIX THE CONTEXT STUFF
+        val tasks = Storage.readData(this)
 
         if (tasks != null && (adapter.tasks.isEmpty())) adapter.tasks = tasks
     }
@@ -82,23 +83,13 @@ class MonthlyJobsActivity : AppCompatActivity() {
         val MONTH_TEXT = "month"
     }
 
-
-//    fun performFiltering(monthSelected: String){
-//        for (i in (1..adapter.tasks.size)) {
-//            var taskItem = adapter.tasks[i]
-//            if(taskItem.month.equals(monthSelected)){
-//
-//            }
-//        }
-//    }
-
     private fun addFragment(fragment: MonthlyJobsFragment) {
-    supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
-            .add(R.id.monthly_jobs_layout, fragment, fragment.javaClass.simpleName)
-            .addToBackStack(fragment.javaClass.simpleName)
-            .commit()
+        supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
+                .add(R.id.monthly_jobs_layout, fragment, fragment.javaClass.simpleName)
+                .addToBackStack(fragment.javaClass.simpleName)
+                .commit()
     }
 
 }

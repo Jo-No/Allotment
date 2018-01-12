@@ -1,5 +1,6 @@
 package com.example.jno14.moveggiesmoproblems
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -15,24 +16,37 @@ class MonthlyJobsFragment : Fragment() {
 
     companion object {
         fun newInstance(): MonthlyJobsFragment {
+//            newInstance(month)
+//            var bundle: Bundle
+//            bundle.putString(month) // specific fragment
+//            var fragment: MonthlyJobsFragment = MonthlyJobsFragment( arguments = bundle)
             return MonthlyJobsFragment()
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val recyclerView = fragment_task_list
-        val layoutManager = LinearLayoutManager(context)
-        recyclerView?.layoutManager = layoutManager
-        recyclerView?.adapter = adapter
-
-
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
+        var tasks: MutableList<Task> = adapter.tasks
+        val recyclerView = fragment_task_list
+        val layoutManager = LinearLayoutManager(context)
+        recyclerView?.layoutManager = layoutManager
+        recyclerView?.adapter = adapter
         return inflater!!.inflate(R.layout.fragment_monthly_jobs, container, false)
     }
+
+
+//    override fun onAttach(context: Context?) {
+//        super.onAttach(context)
+//
+//        val tasks = Storage.readData(context = MonthlyJobsActivity())
+//
+//        if (tasks != null && (adapter.tasks.isEmpty())) adapter.tasks = tasks
+//    }
 
 //    fun filterTasks() {
 //        val tasks =
@@ -43,6 +57,4 @@ class MonthlyJobsFragment : Fragment() {
 //        }
 //    }
 }
-
-
 

@@ -24,7 +24,7 @@ object Storage {
     /**
      * Writes a list of tasks to a file.
      */
-    fun writeData(context: Context, tasks: List<Task>?) {
+    fun writeData(context: Context, tasks: MutableList<Task>?) {
         var fos: FileOutputStream? = null
         var oos: ObjectOutputStream? = null
 

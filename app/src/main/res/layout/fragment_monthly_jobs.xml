@@ -2,19 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.jno14.moveggiesmoproblems.MonthlyJobsFragment"
-    android:id="@+id/job_fragment"
-    >
+    android:id="@+id/job_fragment">
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_task_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="200dp"
+        />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/fragment_task_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <include layout="@layout/content_activity_monthly_jobs"/>
 
-    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

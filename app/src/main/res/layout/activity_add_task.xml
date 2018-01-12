@@ -14,12 +14,13 @@
         android:inputType="text"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <Spinner
         android:id="@+id/month"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/month"
-        android:inputType="text"
+        android:editable="true"
+        android:focusable="false"
+        android:entries="@array/months_array"
         app:layout_constraintTop_toBottomOf="@id/task_description" />
 
     <Button
