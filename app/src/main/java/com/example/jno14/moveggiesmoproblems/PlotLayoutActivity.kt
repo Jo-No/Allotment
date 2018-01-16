@@ -9,6 +9,7 @@ class PlotLayoutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_plot_layout)
 
+
 //        var addPlot = findViewById<FloatingActionButton>(R.id.add_plot_button)
 //        addPlot.setOnClickListener { _ ->
 //            addFragment(AddPlotFragment())

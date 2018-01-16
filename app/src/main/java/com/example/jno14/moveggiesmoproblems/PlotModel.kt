@@ -6,4 +6,4 @@ import java.io.Serializable
 /**
  * Created by jno14 on 12/01/2018.
  */
-data class Plot(var image: Image, var plants: String): Serializable
+data class Plot(var plotName: String, var plants: String): Serializable

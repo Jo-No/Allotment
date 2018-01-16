@@ -43,7 +43,7 @@ class MonthlyJobsFragment : Fragment() {
 //    override fun onAttach(context: Context?) {
 //        super.onAttach(context)
 //
-//        val tasks = Storage.readData(context = MonthlyJobsActivity())
+//        val tasks = TaskStorage.readData(context = MonthlyJobsActivity())
 //
 //        if (tasks != null && (adapter.tasks.isEmpty())) adapter.tasks = tasks
 //    }

@@ -1,17 +1,12 @@
 package com.example.jno14.moveggiesmoproblems
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
-import android.widget.AdapterView
-import android.widget.Spinner
-import com.example.jno14.moveggiesmoproblems.R.id.task_list
 import kotlinx.android.synthetic.main.content_activity_monthly_jobs.*
 
 class MonthlyJobsActivity : AppCompatActivity() {
@@ -44,7 +39,7 @@ class MonthlyJobsActivity : AppCompatActivity() {
     override fun onResume(){
         super.onResume()
 
-        val tasks = Storage.readData(this)
+        val tasks = TaskStorage.readData(this)
 
         if (tasks != null && (adapter.tasks.isEmpty())) adapter.tasks = tasks
     }
@@ -52,7 +47,7 @@ class MonthlyJobsActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
 
-        Storage.writeData(this, adapter.tasks)
+        TaskStorage.writeData(this, adapter.tasks)
     }
 
     companion object {

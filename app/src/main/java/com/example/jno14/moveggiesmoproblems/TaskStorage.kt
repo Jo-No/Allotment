@@ -10,11 +10,11 @@ import java.io.FileOutputStream
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 
-object Storage {
+object TaskStorage {
     /**
      * Log Tag for this class to easily filter for errors in the logcat.
      */
-    private val LOG_TAG = Storage::class.java.simpleName
+    private val LOG_TAG = TaskStorage::class.java.simpleName
 
     /**
      * The name of the file to read from/write to list items.
