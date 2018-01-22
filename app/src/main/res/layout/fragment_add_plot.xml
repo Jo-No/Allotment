@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/add_plot_fragment"
-    tools:context="com.example.jno14.moveggiesmoproblems.AddPlotFragment"
+    tools:context="com.example.jno14.moveggiesmoproblems.AddPlotActivity"
     tools:showIn="@layout/activity_plot_layout">
 
     <TextView

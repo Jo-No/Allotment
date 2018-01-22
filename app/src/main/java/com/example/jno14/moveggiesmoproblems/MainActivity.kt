@@ -18,8 +18,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_plot_layout -> {
-                val intent = Intent(this, PlotLayoutActivity::class.java)
-                startActivity(intent)
+
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_monthly_jobs -> {
@@ -42,7 +41,6 @@ class MainActivity : AppCompatActivity() {
 //    private fun addFragment(fragment: Fragment) {
 //        supportFragmentManager
 //                .beginTransaction()
-//                .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
 //                .replace(R.id.content, fragment, fragment.javaClass.simpleName)
 //                .addToBackStack(fragment.javaClass.simpleName)
 //                .commit()
@@ -51,3 +49,5 @@ class MainActivity : AppCompatActivity() {
 
 }
 
+//val intent = Intent(this, PlotLayoutActivity::class.java)
+//startActivity(intent)
