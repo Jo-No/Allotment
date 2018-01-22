@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.example.jno14.moveggiesmoproblems.R.layout.bottom_navigation
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.bottom_navigation.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,9 +24,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_monthly_jobs -> {
-
-                val intent = Intent(this, MonthlyJobsActivity::class.java)
-                startActivity(intent)
+                addFragment(MonthlyJobsFragment())
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -39,14 +38,21 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
-//    private fun addFragment(fragment: Fragment) {
-//        supportFragmentManager
-//                .beginTransaction()
-//                .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
-//                .replace(R.id.content, fragment, fragment.javaClass.simpleName)
-//                .addToBackStack(fragment.javaClass.simpleName)
-//                .commit()
+//    override fun onRestart() {
+//        super.onRestart()
+//        BottomNavigationView.OnNavigationItemSelectedListener{ item ->
+//                R.id.navigation_home
+//
+//            return@OnNavigationItemSelectedListener true
+//        }
 //    }
+
+    private fun addFragment(fragment: MonthlyJobsFragment) {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.container, fragment)
+                .addToBackStack(fragment.javaClass.simpleName)
+                .commit()
+    }
 
 
 }

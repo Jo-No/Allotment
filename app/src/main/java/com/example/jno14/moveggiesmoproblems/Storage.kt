@@ -51,7 +51,7 @@ object Storage {
     /**
      * Reads a list of tasks from a file.
      */
-    fun readData(context: MonthlyJobsActivity): MutableList<Task>? {
+    fun readData(context: AddTaskActivity): MutableList<Task>? {
         var fis: FileInputStream? = null
         var ois: ObjectInputStream? = null
 
@@ -62,7 +62,7 @@ object Storage {
             fis = context.openFileInput(FILE_NAME)
             ois = ObjectInputStream(fis)
 
-            tasks = ois?.readObject() as? MutableList<Task>
+            tasks = ois.readObject() as? MutableList<Task>
         } catch (e: Exception) {
             Log.e(LOG_TAG, "Could not read from file.")
             e.printStackTrace()

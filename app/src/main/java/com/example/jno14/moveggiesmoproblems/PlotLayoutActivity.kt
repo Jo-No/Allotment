@@ -16,11 +16,9 @@ class PlotLayoutActivity : AppCompatActivity() {
         setContentView(R.layout.activity_plot_layout)
 
     }
-//
-//    inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
-//        val fragmentTransaction = beginTransaction()
-//        fragmentTransaction.func()
-//        fragmentTransaction.commit()
-//
-//    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }

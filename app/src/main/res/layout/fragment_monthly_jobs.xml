@@ -1,19 +1,43 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.jno14.moveggiesmoproblems.MonthlyJobsFragment"
-    android:id="@+id/job_fragment">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_task_list"
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.jno14.moveggiesmoproblems.MonthlyJobsFragment"
+        android:id="@+id/monthly_jobs_layout"
+        android:background="#ffffff">
 
-    <include layout="@layout/content_activity_monthly_jobs"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_jobs"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/monthly_task_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include layout="@layout/content_activity_monthly_jobs"/>
+
+        <Button
+            android:id="@+id/add_task_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:text="Add Task"
+            app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+    <!--<Spinner-->
+    <!--android:id="@+id/months_spinner"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="top"-->
+    <!--android:padding="@dimen/fab_margin"-->
+    <!--android:entries="@array/months_array"-->
+    <!--/>-->

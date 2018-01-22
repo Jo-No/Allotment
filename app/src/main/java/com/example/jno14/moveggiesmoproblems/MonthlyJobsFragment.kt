@@ -1,60 +1,98 @@
 package com.example.jno14.moveggiesmoproblems
 
-import android.content.Context
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.jno14.moveggiesmoproblems.R.id.month
 import kotlinx.android.synthetic.main.fragment_monthly_jobs.*
 
-class MonthlyJobsFragment : Fragment() {
+class MonthlyJobsFragment: Fragment() {
 
-    var adapter: TaskAdapter = TaskAdapter()
+    private var adapter: TaskAdapter = TaskAdapter()
 
-    companion object {
-        fun newInstance(): MonthlyJobsFragment {
-//            newInstance(month)
-//            var bundle: Bundle
-//            bundle.putString(month) // specific fragment
-//            var fragment: MonthlyJobsFragment = MonthlyJobsFragment( arguments = bundle)
-            return MonthlyJobsFragment()
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+
+        return inflater?.inflate(R.layout.fragment_monthly_jobs, container, false)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val recyclerView = monthly_task_list as RecyclerView
+        val layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
+
+        add_task_button.setOnClickListener { _ ->
+            val intent = Intent(context, AddTaskActivity::class.java)
+            startActivityForResult(intent, ADD_TASK_REQUEST)
+//            addFragment(AddMonthlyJobsFragment())
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == ADD_TASK_REQUEST && resultCode == Activity.RESULT_OK) {
+            val task = Task(data?.getStringExtra(DESCRIPTION_TEXT).orEmpty(), data?.getStringExtra(MONTH_TEXT).orEmpty())
+            adapter.addTask(task)
+        }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onResume(){
+        super.onResume()
 
-        var tasks: MutableList<Task> = adapter.tasks
-        val recyclerView = fragment_task_list
-        val layoutManager = LinearLayoutManager(context)
-        recyclerView?.layoutManager = layoutManager
-        recyclerView?.adapter = adapter
-        return inflater!!.inflate(R.layout.fragment_monthly_jobs, container, false)
+        val tasks = Storage.readData(AddTaskActivity())
+
+        if (tasks != null && (adapter.tasks.isEmpty())) adapter.tasks = tasks
     }
 
+    override fun onPause() {
+        super.onPause()
 
-//    override fun onAttach(context: Context?) {
-//        super.onAttach(context)
-//
-//        val tasks = Storage.readData(context = MonthlyJobsActivity())
-//
-//        if (tasks != null && (adapter.tasks.isEmpty())) adapter.tasks = tasks
+        Storage.writeData(context, adapter.tasks)
+    }
+
+    companion object {
+        private val ADD_TASK_REQUEST = 0
+        val DESCRIPTION_TEXT = "description"
+        val MONTH_TEXT = "month"
+    }
+
+//    private fun addFragment(fragment: AddMonthlyJobsFragment) {
+//        supportFragmentManager
+//                .beginTransaction()
+//                .add(R.id.monthly_jobs_layout, fragment, fragment.javaClass.simpleName)
+//                .addToBackStack(fragment.javaClass.simpleName)
+//                .commit()
 //    }
 
-//    fun filterTasks() {
-//        val tasks =
-//
-//        when (month.toString()) {
-//            "January" -> tasks?.filter { it.month == "January" }
-//            "February" -> tasks?.filter { it.month == "February" }
-//        }
-//    }
 }
 
+
+
+//Taken from onCreate
+//        val spinner = findViewById<Spinner>(R.id.months_spinner)
+//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+//                val monthSelected = parent.getItemAtPosition(position).toString()
+//                if (monthSelected.equals("")) {
+//                } else {
+//                    TaskAdapter.performSorting(monthSelected)
+//                }
+//            }
+//          override fun onNothingSelected(parent: AdapterView<*>) {
+//            }
+//        }
+//        fun performSorting(monthSelected: String){
+//            //get spinner pos
+//            tasks.sortedBy { it.position.first }
+//            //reload
+//        }
+//        val dataAdapter = ArrayAdapter.createFromResource(this, R.array.months_array, android.R.layout.simple_spinner_item)
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        spinner.adapter = dataAdapter
