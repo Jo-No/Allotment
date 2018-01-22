@@ -22,12 +22,6 @@ class MonthlyJobsFragment: Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         val inflatedView = inflater?.inflate(R.layout.fragment_monthly_jobs, container, false)
-        var addTaskButton: Button? = view?.findViewById(R.id.add_task_button)
-        addTaskButton?.setOnClickListener { _ ->
-            val intent = Intent(context, AddTaskActivity::class.java)
-            startActivityForResult(intent, ADD_TASK_REQUEST)
-//            addFragment(AddMonthlyJobsFragment())
-        }
         return inflatedView
     }
 
@@ -37,6 +31,13 @@ class MonthlyJobsFragment: Fragment() {
         val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
+
+        var addTaskButton: Button? = view?.findViewById(R.id.add_task_button)
+        addTaskButton?.setOnClickListener { _ ->
+            val intent = Intent(context, AddTaskActivity::class.java)
+            startActivityForResult(intent, ADD_TASK_REQUEST)
+//            addFragment(AddMonthlyJobsFragment())
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
