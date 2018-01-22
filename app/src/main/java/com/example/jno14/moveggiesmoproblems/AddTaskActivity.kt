@@ -21,13 +21,13 @@ class AddTaskActivity : AppCompatActivity() {
         val month = findViewById<Spinner>(R.id.month)
         val submit = findViewById<Button>(R.id.submit)
 
-        month.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                var monthSelected = parent.getItemAtPosition(position).toString()
-            }
-          override fun onNothingSelected(parent: AdapterView<*>) {
-            }
-        }
+//        month.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+//                var monthSelected = parent.getItemAtPosition(position).toString()
+//            }
+//          override fun onNothingSelected(parent: AdapterView<*>) {
+//            }
+//        }
         // TODO: Might not need ^
 
         submit.setOnClickListener {
@@ -37,8 +37,8 @@ class AddTaskActivity : AppCompatActivity() {
                 description.error = "Please enter a description"
             } else {
                 val data = Intent()
-                data.putExtra(MonthlyJobsActivity.DESCRIPTION_TEXT, description.text.toString())
-                data.putExtra(MonthlyJobsActivity.MONTH_TEXT, month.selectedItem.toString())
+                data.putExtra(MonthlyJobsFragment.DESCRIPTION_TEXT, description.text.toString())
+                data.putExtra(MonthlyJobsFragment.MONTH_TEXT, month.selectedItem.toString())
                 setResult(Activity.RESULT_OK, data)
 
                 finish()

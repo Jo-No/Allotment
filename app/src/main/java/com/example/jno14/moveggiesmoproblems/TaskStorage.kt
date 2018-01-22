@@ -3,6 +3,7 @@ package com.example.jno14.moveggiesmoproblems
 /**
  * Created by jno14 on 05/01/2018.
  */
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import java.io.FileInputStream
@@ -51,7 +52,7 @@ object TaskStorage {
     /**
      * Reads a list of tasks from a file.
      */
-    fun readData(context: MonthlyJobsActivity): MutableList<Task>? {
+    fun readData(context: Context): MutableList<Task>? {
         var fis: FileInputStream? = null
         var ois: ObjectInputStream? = null
 
@@ -62,7 +63,7 @@ object TaskStorage {
             fis = context.openFileInput(FILE_NAME)
             ois = ObjectInputStream(fis)
 
-            tasks = ois?.readObject() as? MutableList<Task>
+            tasks = ois.readObject() as? MutableList<Task>
         } catch (e: Exception) {
             Log.e(LOG_TAG, "Could not read from file.")
             e.printStackTrace()
