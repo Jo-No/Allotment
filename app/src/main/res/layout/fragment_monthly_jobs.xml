@@ -14,21 +14,21 @@
         android:layout_height="wrap_content"
         android:text="@string/title_jobs"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/monthly_task_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/monthly_task_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <include layout="@layout/content_activity_monthly_jobs"/>
+    <Button
+        android:id="@+id/add_task_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:text="Add Task"
+        android:gravity="bottom|end"
+        android:shadowColor="@color/colorPrimary" />
 
-        <Button
-            android:id="@+id/add_task_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:text="Add Task"
-            app:srcCompat="@android:drawable/ic_dialog_email" />
+    <include layout="@layout/content_activity_monthly_jobs"/>
 
     </LinearLayout>
 

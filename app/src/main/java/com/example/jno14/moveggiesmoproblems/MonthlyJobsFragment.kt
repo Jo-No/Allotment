@@ -1,6 +1,7 @@
 package com.example.jno14.moveggiesmoproblems
 
 import android.app.Activity
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import kotlinx.android.synthetic.main.fragment_monthly_jobs.*
 
 class MonthlyJobsFragment: Fragment() {
@@ -19,7 +21,14 @@ class MonthlyJobsFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        return inflater?.inflate(R.layout.fragment_monthly_jobs, container, false)
+        val inflatedView = inflater?.inflate(R.layout.fragment_monthly_jobs, container, false)
+        var addTaskButton: Button? = view?.findViewById(R.id.add_task_button)
+        addTaskButton?.setOnClickListener { _ ->
+            val intent = Intent(context, AddTaskActivity::class.java)
+            startActivityForResult(intent, ADD_TASK_REQUEST)
+//            addFragment(AddMonthlyJobsFragment())
+        }
+        return inflatedView
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -28,12 +37,6 @@ class MonthlyJobsFragment: Fragment() {
         val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
-
-        add_task_button.setOnClickListener { _ ->
-            val intent = Intent(context, AddTaskActivity::class.java)
-            startActivityForResult(intent, ADD_TASK_REQUEST)
-//            addFragment(AddMonthlyJobsFragment())
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -46,7 +49,7 @@ class MonthlyJobsFragment: Fragment() {
     override fun onResume(){
         super.onResume()
 
-        val tasks = Storage.readData(AddTaskActivity())
+        val tasks = Storage.readData(activity.applicationContext)
 
         if (tasks != null && (adapter.tasks.isEmpty())) adapter.tasks = tasks
     }
