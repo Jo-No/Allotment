@@ -15,15 +15,15 @@ class MainActivity : AppCompatActivity() {
 
         when (item.itemId) {
             R.id.navigation_home -> {
-                addHomeFragment(HomeFragment())
+                addFragment(HomeFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_plot_layout -> {
-
+//                addFragment(PlotLayoutFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_monthly_jobs -> {
-                addJobsFragment(MonthlyJobsFragment())
+                addFragment(MonthlyJobsFragment())
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -37,28 +37,12 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
-//    private fun addFragment(fragment: Fragment) {
-//        supportFragmentManager
-//                .beginTransaction()
-//                .replace(R.id.content, fragment, fragment.javaClass.simpleName)
-//                .addToBackStack(fragment.javaClass.simpleName)
-//                .commit()
-//    }
-
-    private fun addJobsFragment(fragment: MonthlyJobsFragment) {
+    private fun addFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)
                 .addToBackStack(fragment.javaClass.simpleName)
                 .commit()
     }
-
-    private fun addHomeFragment(fragment: HomeFragment) {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.container, fragment)
-                .addToBackStack(fragment.javaClass.simpleName)
-                .commit()
-    }
-
 
 }
 

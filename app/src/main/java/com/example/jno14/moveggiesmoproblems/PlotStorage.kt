@@ -38,7 +38,7 @@ object PlotStorage {
 
         }
     }
-    fun readData(context: MonthlyJobsActivity): List<Plot>? {
+    fun readData(context: Context): List<Plot>? {
         var fis: FileInputStream? = null
         var ois: ObjectInputStream? = null
 

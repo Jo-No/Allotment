@@ -1,6 +1,5 @@
 package com.example.jno14.moveggiesmoproblems
 
-
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -34,14 +33,7 @@ class HomeFragment : Fragment() {
         private val ARG_PARAM2 = "param2"
 
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String, param2: String): HomeFragment {
-            val fragment = HomeFragment()
-            val args = Bundle()
-            args.putString(ARG_PARAM1, param1)
-            args.putString(ARG_PARAM2, param2)
-            fragment.arguments = args
-            return fragment
         }
-    }
+}
 
-}// Required empty public constructor
+// Required empty public constructor

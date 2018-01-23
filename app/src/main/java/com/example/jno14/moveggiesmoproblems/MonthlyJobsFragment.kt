@@ -1,10 +1,8 @@
 package com.example.jno14.moveggiesmoproblems
 
 import android.app.Activity
-import android.app.Application
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -36,7 +34,6 @@ class MonthlyJobsFragment: Fragment() {
         addTaskButton?.setOnClickListener { _ ->
             val intent = Intent(context, AddTaskActivity::class.java)
             startActivityForResult(intent, ADD_TASK_REQUEST)
-//            addFragment(AddMonthlyJobsFragment())
         }
     }
 
@@ -50,7 +47,7 @@ class MonthlyJobsFragment: Fragment() {
     override fun onResume(){
         super.onResume()
 
-        val tasks = Storage.readData(activity.applicationContext)
+        val tasks = TaskStorage.readData(activity.applicationContext)
 
         if (tasks != null && (adapter.tasks.isEmpty())) adapter.tasks = tasks
     }
@@ -58,7 +55,7 @@ class MonthlyJobsFragment: Fragment() {
     override fun onPause() {
         super.onPause()
 
-        Storage.writeData(context, adapter.tasks)
+        TaskStorage.writeData(context, adapter.tasks)
     }
 
     companion object {
@@ -66,14 +63,6 @@ class MonthlyJobsFragment: Fragment() {
         val DESCRIPTION_TEXT = "description"
         val MONTH_TEXT = "month"
     }
-
-//    private fun addFragment(fragment: AddMonthlyJobsFragment) {
-//        supportFragmentManager
-//                .beginTransaction()
-//                .add(R.id.monthly_jobs_layout, fragment, fragment.javaClass.simpleName)
-//                .addToBackStack(fragment.javaClass.simpleName)
-//                .commit()
-//    }
 
 }
 
