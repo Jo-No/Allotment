@@ -5,6 +5,7 @@ package com.example.jno14.moveggiesmoproblems
  */
 import android.content.Context
 import android.util.Log
+import com.example.jno14.moveggiesmoproblems.data.Plot
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.ObjectInputStream

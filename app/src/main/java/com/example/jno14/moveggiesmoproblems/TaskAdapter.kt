@@ -62,13 +62,13 @@ class TaskAdapter(tasks: MutableList<Task> = ArrayList()) : RecyclerView.Adapter
 //        //reload
 //    }
 
-    fun performFiltering(monthSelected: String){
-        for (i in (1..tasks.size)) {
-            var taskItem = tasks[i]
-            if(taskItem.month.equals(monthSelected)){
-            }
-        }
-    }
+//    fun performFiltering(monthSelected: String){
+//        for (i in (1..tasks.size)) {
+//            var taskItem = tasks[i]
+//            if(taskItem.month.equals(monthSelected)){
+//            }
+//        }
+//    }
 
     fun removeTask(task: Task){
         tasks.remove(task)

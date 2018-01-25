@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jno14.moveggiesmoproblems.AddPlotActivity">
+
+    <EditText
+        android:id="@+id/plot_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/description"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/plot_plants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/description"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/submit_plot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        app:layout_constraintTop_toBottomOf="@id/plot_plants" />
+</android.support.constraint.ConstraintLayout>

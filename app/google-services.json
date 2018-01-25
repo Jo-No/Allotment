@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "1082133760132",
-    "firebase_url": "https://allotment-c9bcd.firebaseio.com",
-    "project_id": "allotment-c9bcd",
-    "storage_bucket": "allotment-c9bcd.appspot.com"
+    "project_number": "485650882000",
+    "firebase_url": "https://allotment-d9573.firebaseio.com",
+    "project_id": "allotment-d9573",
+    "storage_bucket": "allotment-d9573.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1082133760132:android:0b9cf02bfdca2b17",
+        "mobilesdk_app_id": "1:485650882000:android:0b9cf02bfdca2b17",
         "android_client_info": {
           "package_name": "com.example.jno14.moveggiesmoproblems"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1082133760132-odgn4514jfg8q92fskev4p72cvr0b1t2.apps.googleusercontent.com",
+          "client_id": "485650882000-itm0sherf0s76erohg2ktp3gftoq9p52.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jno14.moveggiesmoproblems",
+            "certificate_hash": "2b9fb6d0299c66d04706d66395291d29b4c4c473"
+          }
+        },
+        {
+          "client_id": "485650882000-6fsmhs7bdjukra1ilhln78blhsi2jucm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCvw-fiW9lwtg96zg7EGme2GpIsC9jyhLc"
+          "current_key": "AIzaSyDF0ngIPdwZVxhwY8eYMpoW_0DVcNLpvKk"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "485650882000-6fsmhs7bdjukra1ilhln78blhsi2jucm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

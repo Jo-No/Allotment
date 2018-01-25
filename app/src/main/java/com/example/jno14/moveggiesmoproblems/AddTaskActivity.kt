@@ -21,19 +21,9 @@ class AddTaskActivity : AppCompatActivity() {
         val month = findViewById<Spinner>(R.id.month)
         val submit = findViewById<Button>(R.id.submit)
 
-//        month.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-//                var monthSelected = parent.getItemAtPosition(position).toString()
-//            }
-//          override fun onNothingSelected(parent: AdapterView<*>) {
-//            }
-//        }
-        // TODO: Might not need ^
 
         submit.setOnClickListener {
             if (description.text?.toString().isNullOrBlank()) {
-                description.error = "Please enter a description"
-            } else if (description.text?.toString().isNullOrBlank()) {
                 description.error = "Please enter a description"
             } else {
                 val data = Intent()

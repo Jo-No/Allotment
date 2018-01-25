@@ -4,19 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/add_plot_fragment"
-    tools:context="com.example.jno14.moveggiesmoproblems.AddPlotActivity"
-    tools:showIn="@layout/activity_plot_layout">
+    tools:context="com.example.jno14.moveggiesmoproblems.AddPlotActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title_plot"/>
 
-    <RelativeLayout
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recycler_plot_layout">
+    </android.support.v7.widget.RecyclerView>
 
-    </RelativeLayout>
+    <Button
+        android:id="@+id/add_plot_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:text="Add Task"
+        android:gravity="bottom|end" />
 
 </LinearLayout>
