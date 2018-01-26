@@ -34,14 +34,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-<<<<<<< HEAD
         addFragment(HomeFragment())
-=======
 
         val repo = PlotRepository.instance
         repo.addPlot(Plot(plotName = "name", plants = "123"))
->>>>>>> startPlotLayout
-
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
@@ -52,6 +48,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
-//val intent = Intent(this, PlotLayoutActivity::class.java)
-//startActivity(intent)
