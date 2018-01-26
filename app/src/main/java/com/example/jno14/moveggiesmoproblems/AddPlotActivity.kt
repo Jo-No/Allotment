@@ -1,31 +1,41 @@
 package com.example.jno14.moveggiesmoproblems
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.EditText
+import com.example.jno14.moveggiesmoproblems.data.Plot
+import com.example.jno14.moveggiesmoproblems.data.PlotRepository
 import kotlinx.android.synthetic.main.activity_add_plot.*
+import kotlinx.android.synthetic.main.plot.*
 
 
 class AddPlotActivity : AppCompatActivity() {
-    
+
+    private var editPlot: Plot? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_plot_layout)
+        setContentView(R.layout.activity_add_plot)
 
-        val name = findViewById<EditText>(R.id.plot_name)
-        val plant = findViewById<EditText>(R.id.plants)
+        editPlot = intent.extras?.getSerializable("plot") as? Plot
 
-        submit_plot.setOnClickListener{
+        editPlot?.let { plot ->
+            plot_name.setText(plot.plotName)
+            plot_plants.setText(plot.plants)
+        }
+
+        submit_plot.setOnClickListener {
             when {
-                name.text?.toString().isNullOrBlank() -> name.error = "Please enter a description"
-                plant.text?.toString().isNullOrBlank() -> plant.error = "Please enter a description"
+                plot_name.text?.toString().isNullOrBlank() -> plot_name.error = "Please enter a description"
+                plot_plants.text?.toString().isNullOrBlank() -> plot_plants.error = "Please enter a description"
                 else -> {
-                    val data = Intent()
-                    data.putExtra(PlotLayoutFragment.PLOT_NAME, name.text.toString())
-                    data.putExtra(PlotLayoutFragment.PLOT_PLANTS, plant.text.toString())
-                    setResult(Activity.RESULT_OK, data)
+
+                    val plot = Plot(plotName = plot_name.text.toString(), plants = plot_plants.text.toString(), id = editPlot?.id)
+
+                    if (editPlot != null) {
+                        PlotRepository.instance.updatePlot(plot)
+                    } else {
+                        PlotRepository.instance.addPlot(plot)
+                    }
 
                     finish()
                 }

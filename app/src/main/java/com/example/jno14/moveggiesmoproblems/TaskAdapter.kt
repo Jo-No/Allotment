@@ -10,9 +10,6 @@ import android.widget.Spinner
 import android.widget.TextView
 import com.example.jno14.moveggiesmoproblems.R.id.month
 
-/**
- * Created by jno14 on 04/01/2018.
- */
 class TaskAdapter(tasks: MutableList<Task> = ArrayList()) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     var tasks: MutableList<Task> = tasks

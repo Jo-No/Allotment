@@ -1,5 +1,8 @@
 package com.example.jno14.moveggiesmoproblems
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.OnLifecycleEvent
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,53 +11,80 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import com.example.jno14.moveggiesmoproblems.data.Plot
 import com.example.jno14.moveggiesmoproblems.data.PlotRepository
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_plot_layout.*
-import kotlinx.android.synthetic.main.plot.*
 
 class PlotLayoutFragment : Fragment() {
 
-    var adapter: PlotAdapter = PlotAdapter()
+    val adapter: PlotAdapter = PlotAdapter()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private val presenter = PlotLayoutPresenter(this)
 
-        val repo = PlotRepository.instance
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+
+        return inflater.inflate(R.layout.fragment_plot_layout, container, false)
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val recyclerView = recycler_plot_layout as RecyclerView
         val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
-    }
+        adapter.listener = presenter
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+        lifecycle.addObserver(presenter)
 
-        return inflater!!.inflate(R.layout.fragment_plot_layout, container, false)
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        val plot = Plot("key", data?.getStringExtra(PlotLayoutFragment.PLOT_NAME).orEmpty(), data?.getStringExtra(PlotLayoutFragment.PLOT_PLANTS).orEmpty())
-        adapter.addNewPlot(plot)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        val plots = PlotRepository.instance.getFlowable()
-
-        if (plots != null) adapter.plots = plots
-
+        add_plot_button.setOnClickListener {
+            val intent = Intent(activity, AddPlotActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     companion object {
         val PLOT_NAME = "plotName"
         val PLOT_PLANTS = "plotPlants"
     }
+
+    fun setPlotList(newList: List<Plot>) {
+        adapter.plots = newList
+    }
+
+    fun startEditView(plot: Plot) {
+        val intent = Intent(activity, AddPlotActivity::class.java)
+        intent.putExtra("plot",plot)
+        startActivity(intent)
+    }
 }
 
+
+class PlotLayoutPresenter(val view: PlotLayoutFragment, val repo: PlotRepository = PlotRepository.instance) : LifecycleObserver, OnPlotClickedListener {
+    override fun onPlotClicked(plot: Plot) {
+        view.startEditView(plot)
+    }
+
+    private var disposable: Disposable? = null
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun start() {
+        disposable = repo.getFlowable()
+                .subscribe(
+                        { success ->
+                            view.setPlotList(success)
+                        },
+                        { error -> throw error }
+                )
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    fun stop() {
+        disposable?.dispose()
+    }
+}
 
 //recycler_plot_layout
