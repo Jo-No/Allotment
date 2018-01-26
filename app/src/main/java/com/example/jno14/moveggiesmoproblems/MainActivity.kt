@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.example.jno14.moveggiesmoproblems.data.Plot
+import com.example.jno14.moveggiesmoproblems.data.PlotRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.bottom_navigation.*
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +34,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+<<<<<<< HEAD
         addFragment(HomeFragment())
+=======
+
+        val repo = PlotRepository.instance
+        repo.addPlot(Plot(plotName = "name", plants = "123"))
+>>>>>>> startPlotLayout
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
