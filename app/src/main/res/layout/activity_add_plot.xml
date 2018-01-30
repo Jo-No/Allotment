@@ -13,14 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/nameHint"
-        android:inputType="text" />
+        android:inputType="text"
+        android:paddingBottom="@dimen/fab_margin"/>
 
     <EditText
         android:id="@+id/plot_plants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/plantsHint"
-        android:inputType="text" />
+        android:inputType="text"
+        android:paddingBottom="@dimen/fab_margin"/>
 
     <Button
         android:id="@+id/submit_plot"

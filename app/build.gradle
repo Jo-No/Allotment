@@ -51,6 +51,3 @@ dependencies {
     androidTestImplementation "android.arch.core:core-testing:$room_version"
 
 }
-
-
-apply plugin: 'com.google.gms.google-services'
