@@ -10,9 +10,6 @@ import android.widget.Spinner
 import android.widget.TextView
 import com.example.jno14.moveggiesmoproblems.R.id.month
 
-/**
- * Created by jno14 on 04/01/2018.
- */
 class TaskAdapter(tasks: MutableList<Task> = ArrayList()) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     var tasks: MutableList<Task> = tasks
@@ -62,13 +59,13 @@ class TaskAdapter(tasks: MutableList<Task> = ArrayList()) : RecyclerView.Adapter
 //        //reload
 //    }
 
-    fun performFiltering(monthSelected: String){
-        for (i in (1..tasks.size)) {
-            var taskItem = tasks[i]
-            if(taskItem.month.equals(monthSelected)){
-            }
-        }
-    }
+//    fun performFiltering(monthSelected: String){
+//        for (i in (1..tasks.size)) {
+//            var taskItem = tasks[i]
+//            if(taskItem.month.equals(monthSelected)){
+//            }
+//        }
+//    }
 
     fun removeTask(task: Task){
         tasks.remove(task)
