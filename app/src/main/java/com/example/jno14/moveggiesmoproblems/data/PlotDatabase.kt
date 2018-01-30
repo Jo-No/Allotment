@@ -4,9 +4,6 @@ import android.arch.persistence.room.*
 import android.content.Context
 import java.io.Serializable
 
-/**
- * Created by jno14 on 26/01/2018.
- */
 class PlotDatabase {
 
     companion object {

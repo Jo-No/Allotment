@@ -25,8 +25,8 @@ class AddPlotActivity : AppCompatActivity() {
 
         submit_plot.setOnClickListener {
             when {
-                plot_name.text?.toString().isNullOrBlank() -> plot_name.error = "Please enter a description"
-                plot_plants.text?.toString().isNullOrBlank() -> plot_plants.error = "Please enter a description"
+                plot_name.text?.toString().isNullOrBlank() -> plot_name.error = "Please enter a name for this plot"
+                plot_plants.text?.toString().isNullOrBlank() -> plot_plants.error = "Please enter some plants"
                 else -> {
 
                     val plot = Plot(plotName = plot_name.text.toString(), plants = plot_plants.text.toString(), id = editPlot?.id)

@@ -4,23 +4,23 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.CheckBox
-import android.widget.Spinner
-import android.widget.TextView
-import com.example.jno14.moveggiesmoproblems.R.id.month
+import com.example.jno14.moveggiesmoproblems.data.Task
+import kotlinx.android.synthetic.main.task.view.*
 
-class TaskAdapter(tasks: MutableList<Task> = ArrayList()) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
-    var tasks: MutableList<Task> = tasks
+class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+
+    var tasks: List<Task> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
+    var listener: OnButtonClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): TaskViewHolder {
         val context = parent?.context
-        val view = LayoutInflater.from(context)?.inflate(R.layout.task, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.task, parent, false)
         return TaskViewHolder(view)
     }
 
@@ -32,47 +32,24 @@ class TaskAdapter(tasks: MutableList<Task> = ArrayList()) : RecyclerView.Adapter
         return tasks.size
     }
 
-    inner class TaskViewHolder(view: View?) : RecyclerView.ViewHolder(view) {
-        val descriptionTextView = view?.findViewById<View>(R.id.task_description) as TextView
-        val monthTextView = view?.findViewById<View>(R.id.month) as TextView
-        val completedCheckBox = view?.findViewById<View>(R.id.task_completed) as CheckBox
+    inner class TaskViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val descriptionTextView = view.task_description
+        val monthTextView = view.month
+        val completedCheckBox = view.task_completed
 
         fun bindTask(task: Task) {
             descriptionTextView.text = task.description
             monthTextView.text = task.month
             completedCheckBox.isChecked = task.completed
 
-            completedCheckBox.setOnCheckedChangeListener { _, isChecked ->
-                tasks[adapterPosition].completed = isChecked
-                if (task.completed) {
-                    removeTask(task)
-                }
+            view.setOnClickListener{
+                listener?.onButtonClicked(task)
             }
         }
     }
-
-//    fun performSorting(monthSelected: String){
-//        //get spinner pos
-//        var monthSelected = monthSelected
-//        tasks.sortBy { it.month. }
-//
-//        //reload
-//    }
-
-//    fun performFiltering(monthSelected: String){
-//        for (i in (1..tasks.size)) {
-//            var taskItem = tasks[i]
-//            if(taskItem.month.equals(monthSelected)){
-//            }
-//        }
-//    }
-
-    fun removeTask(task: Task){
-        tasks.remove(task)
-    }
-
-    fun addTask(task: Task) {
-        tasks.add(task)
-        notifyDataSetChanged()
-    }
 }
+
+interface OnButtonClickListener {
+    fun onButtonClicked(task: Task)
+}
+

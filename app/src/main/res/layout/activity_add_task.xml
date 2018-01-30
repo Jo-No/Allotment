@@ -10,7 +10,7 @@
     >
 
     <EditText
-        android:id="@+id/task_description"
+        android:id="@+id/edit_task_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/taskHint"
@@ -19,19 +19,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/month"
+        android:id="@+id/edit_month"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:editable="true"
         android:focusable="false"
         android:entries="@array/months_array"
         android:paddingBottom="@dimen/fab_margin"
-        app:layout_constraintTop_toBottomOf="@id/task_description" />
+        app:layout_constraintTop_toBottomOf="@id/edit_task_description" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        app:layout_constraintTop_toBottomOf="@id/month" />
+        app:layout_constraintTop_toBottomOf="@id/edit_month" />
 </LinearLayout>

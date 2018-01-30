@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_plot_layout.*
 
 class PlotLayoutFragment : Fragment() {
 
-    val adapter: PlotAdapter = PlotAdapter()
+    private val adapter: PlotAdapter = PlotAdapter()
 
     private val presenter = PlotLayoutPresenter(this)
 
@@ -57,7 +57,7 @@ class PlotLayoutFragment : Fragment() {
 
     fun startEditView(plot: Plot) {
         val intent = Intent(activity, AddPlotActivity::class.java)
-        intent.putExtra("plot",plot)
+        intent.putExtra("plot", plot)
         startActivity(intent)
     }
 }
