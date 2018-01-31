@@ -48,5 +48,8 @@ class TaskRepository(val taskDao: TaskDao = TaskDatabase.instance.database.taskD
         }).start()
     }
 
-
+    fun loadTask(){
+        Thread({
+            onDataChange()
+        }).start()    }
 }

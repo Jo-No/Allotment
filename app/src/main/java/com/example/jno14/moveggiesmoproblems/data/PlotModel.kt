@@ -49,7 +49,9 @@ class PlotRepository(val plotDao: PlotDao = PlotDatabase.instance.database.plotD
     }
 
     fun loadPlot(){
-        onDataChange()
+        Thread({
+            onDataChange()
+        }).start()
     }
 
 }
