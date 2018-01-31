@@ -40,8 +40,10 @@ class PlotLayoutFragment : Fragment() {
         recyclerView.adapter = adapter
         adapter.listener = presenter
 
-//        val plotDao: PlotDao = PlotDatabase.instance.database.plotDao()
-//        plotDao.getAll()
+        Thread({
+        val plotDao: PlotDao = PlotDatabase.instance.database.plotDao()
+        plotDao.getAll()
+        }).start()
 
         lifecycle.addObserver(presenter)
 
