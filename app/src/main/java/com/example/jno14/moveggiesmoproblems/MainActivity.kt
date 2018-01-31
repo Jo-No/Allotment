@@ -36,8 +36,10 @@ class MainActivity : AppCompatActivity() {
 
         addFragment(HomeFragment())
 
-        val repo = PlotRepository.instance
-//        repo.addPlot(Plot(plotName = "name", plants = "123"))
+        Thread({
+            val repo = PlotRepository.instance
+            repo.loadPlot()
+        }).start()
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }

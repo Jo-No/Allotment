@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import com.example.jno14.moveggiesmoproblems.data.Task
 import kotlinx.android.synthetic.main.task.view.*
 
-
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     var tasks: List<Task> = emptyList()
