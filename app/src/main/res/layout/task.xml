@@ -31,17 +31,8 @@
         android:id="@+id/task_description"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/month"
-        android:layout_toLeftOf="@id/task_completed"
         android:textColor="@android:color/black"
         android:layout_alignParentBottom="false"
         android:padding="@dimen/small_margin"/>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/task_completed"
-        android:layout_alignBottom="@+id/task_description"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:padding="@dimen/small_margin"/>
 </RelativeLayout>

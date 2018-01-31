@@ -27,7 +27,6 @@ abstract class MyTaskDatabase : RoomDatabase() {
 @Entity
 data class Task(@ColumnInfo var description: String = "",
                 @ColumnInfo var month: String = "",
-                @ColumnInfo var completed: Boolean = false,
                 @PrimaryKey(autoGenerate = true) var id: Long? = null) : Serializable
 
 @Dao

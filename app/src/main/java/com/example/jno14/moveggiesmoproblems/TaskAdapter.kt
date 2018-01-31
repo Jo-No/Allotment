@@ -35,12 +35,10 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     inner class TaskViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val descriptionTextView = view.task_description
         val monthTextView = view.month
-        val completedCheckBox = view.task_completed
 
         fun bindTask(task: Task) {
             descriptionTextView.text = task.description
             monthTextView.text = task.month
-            completedCheckBox.isChecked = task.completed
 
             view.setOnClickListener{
                 listener?.onButtonClicked(task)
