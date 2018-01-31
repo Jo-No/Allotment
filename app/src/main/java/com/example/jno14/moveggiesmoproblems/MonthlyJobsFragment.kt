@@ -30,8 +30,7 @@ class MonthlyJobsFragment: Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
 
-        var addTaskButton: Button? = view?.findViewById(R.id.add_task_button)
-        addTaskButton?.setOnClickListener { _ ->
+        add_task_button?.setOnClickListener { _ ->
             val intent = Intent(context, AddTaskActivity::class.java)
             startActivityForResult(intent, ADD_TASK_REQUEST)
         }

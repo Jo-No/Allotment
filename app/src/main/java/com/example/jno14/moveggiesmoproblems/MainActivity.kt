@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         addFragment(HomeFragment())
 
         val repo = PlotRepository.instance
+        repo.plotDao.getAll()
 //        repo.addPlot(Plot(plotName = "name", plants = "123"))
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)

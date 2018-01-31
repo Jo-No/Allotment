@@ -12,9 +12,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.jno14.moveggiesmoproblems.data.Plot
+import com.example.jno14.moveggiesmoproblems.data.PlotDao
+import com.example.jno14.moveggiesmoproblems.data.PlotDatabase
 import com.example.jno14.moveggiesmoproblems.data.PlotRepository
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_plot_layout.*
+import kotlinx.android.synthetic.main.plot.*
 
 class PlotLayoutFragment : Fragment() {
 
@@ -37,8 +40,10 @@ class PlotLayoutFragment : Fragment() {
         recyclerView.adapter = adapter
         adapter.listener = presenter
 
-        lifecycle.addObserver(presenter)
+//        val plotDao: PlotDao = PlotDatabase.instance.database.plotDao()
+//        plotDao.getAll()
 
+        lifecycle.addObserver(presenter)
 
         add_plot_button.setOnClickListener {
             val intent = Intent(activity, AddPlotActivity::class.java)
