@@ -13,10 +13,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.jno14.moveggiesmoproblems.data.Task
 import com.example.jno14.moveggiesmoproblems.data.TaskRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_monthly_jobs.*
 
-class MonthlyJobsFragment: Fragment() {
+class MonthlyJobsFragment : Fragment() {
 
     private var adapter: TaskAdapter = TaskAdapter()
 
@@ -50,11 +52,11 @@ class MonthlyJobsFragment: Fragment() {
         val MONTH_TEXT = "month"
     }
 
-    fun setTasks(newList: List<Task>){
+    fun setTasks(newList: List<Task>) {
         adapter.tasks = newList
     }
 
-    fun editTasks(task: Task){
+    fun editTasks(task: Task) {
         val intent = Intent(activity, AddTaskActivity::class.java)
         intent.putExtra("task", task)
         startActivity(intent)
@@ -62,7 +64,7 @@ class MonthlyJobsFragment: Fragment() {
 
 }
 
-class TaskPresenter(val view: MonthlyJobsFragment, val repo: TaskRepository = TaskRepository.instance): LifecycleObserver, OnButtonClickListener {
+class TaskPresenter(val view: MonthlyJobsFragment, val repo: TaskRepository = TaskRepository.instance) : LifecycleObserver, OnButtonClickListener {
     override fun onButtonClicked(task: Task) {
         view.editTasks(task)
     }
@@ -72,6 +74,8 @@ class TaskPresenter(val view: MonthlyJobsFragment, val repo: TaskRepository = Ta
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun start() {
         disposable = repo.getFlowable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { success ->
                             view.setTasks(success)

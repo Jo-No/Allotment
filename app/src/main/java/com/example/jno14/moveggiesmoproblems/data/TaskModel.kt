@@ -7,7 +7,9 @@ import io.reactivex.subjects.BehaviorSubject
 import java.io.Serializable
 import java.util.*
 
-class TaskRepository(val taskDao: TaskDao = TaskDatabase.instance.database.taskDao()) {
+class TaskRepository(private val taskDao: TaskDao = TaskDatabase.instance.database.taskDao()) {
+
+    private val subject = BehaviorSubject.create<List<Task>>()
 
     companion object {
         val instance by lazy {
@@ -15,13 +17,18 @@ class TaskRepository(val taskDao: TaskDao = TaskDatabase.instance.database.taskD
         }
     }
 
-    private val subject = BehaviorSubject.create<List<Task>>()
+    init {
+        onDataChange()
+    }
 
     fun getFlowable(): Flowable<List<Task>> = subject.toFlowable(BackpressureStrategy.LATEST)
 
     private fun onDataChange() {
-        val newListOfTasks = taskDao.getAll()
-        subject.onNext(newListOfTasks)
+        Thread({
+            val newListOfTasks = taskDao.getAll()
+            subject.onNext(newListOfTasks)
+        }).start()
+
     }
 
 
@@ -35,7 +42,7 @@ class TaskRepository(val taskDao: TaskDao = TaskDatabase.instance.database.taskD
     fun updateTask(task: Task) {
         Thread({
             val rowChanged = taskDao.updateTask(task)
-            if(rowChanged > 0){
+            if (rowChanged > 0) {
                 onDataChange()
             }
         }).start()
@@ -47,9 +54,4 @@ class TaskRepository(val taskDao: TaskDao = TaskDatabase.instance.database.taskD
             onDataChange()
         }).start()
     }
-
-    fun loadTask(){
-        Thread({
-            onDataChange()
-        }).start()    }
 }

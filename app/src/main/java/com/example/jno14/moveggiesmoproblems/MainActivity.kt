@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         val plotRepo = PlotRepository.instance
         val TaskRepo = TaskRepository.instance
-        TaskRepo.loadTask()
         plotRepo.loadPlot()
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)

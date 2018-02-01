@@ -9,7 +9,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.jno14.moveggiesmoproblems"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
