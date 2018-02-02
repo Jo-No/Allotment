@@ -44,18 +44,6 @@ class PlotAdapter : RecyclerView.Adapter<PlotAdapter.PlotViewHolder>() {
 
             plotNameTextView.text = plot.plotName
             plantsTextView.text = plot.plants
-
-//            plot.image =
-//                    when (plot.plants.toLowerCase()){
-//                        "tomato", "aubergine", "chilli" -> R.drawable.tomato_image
-//                        "potato" -> R.drawable.potato_image
-//                        "peas" -> R.drawable.pea_image
-//                        "roots", "onions", "parsnip", "carrot" -> R.drawable.carrot_image
-//                        "squashes", "courgette" -> R.drawable.squash_image
-//                        else -> {
-//                            R.drawable.lettuce_image
-//                        }
-//                    }
         }
     }
 }

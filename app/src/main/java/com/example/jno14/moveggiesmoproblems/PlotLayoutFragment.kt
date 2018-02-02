@@ -67,26 +67,12 @@ class PlotLayoutFragment : Fragment() {
         intent.putExtra("plot", plot)
         startActivity(intent)
     }
-
-    fun setImage(plot: Plot){
-        plot.image =
-        when (plot.plants.toLowerCase()){
-            "tomato", "aubergine", "chilli" -> tomato_image
-            "potato" -> potato_image
-            "peas" -> pea_image
-            "roots", "onions", "parsnip", "carrot" -> carrot_image
-            else -> {
-                lettuce_image
-            }
-        }
-    }
 }
 
 
 class PlotLayoutPresenter(val view: PlotLayoutFragment, val repo: PlotRepository = PlotRepository.instance) : LifecycleObserver, OnPlotClickedListener {
     override fun onPlotClicked(plot: Plot) {
         view.startEditView(plot)
-        view.setImage(plot)
     }
 
     private var disposable: Disposable? = null

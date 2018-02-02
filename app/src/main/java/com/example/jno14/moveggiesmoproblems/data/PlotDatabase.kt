@@ -29,7 +29,6 @@ abstract class MyDatabase : RoomDatabase() {
 @Entity
 data class Plot(@ColumnInfo var plotName: String = "",
                 @ColumnInfo var plants: String = "",
-                @ColumnInfo var image: Int?,
                 @PrimaryKey(autoGenerate = true) var id: Long? = null) : Serializable
 
 @Dao
