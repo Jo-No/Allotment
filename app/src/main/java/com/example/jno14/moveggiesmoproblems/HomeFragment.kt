@@ -16,20 +16,20 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home.*
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.Date
+
 
 class HomeFragment : Fragment() {
 
     val adapter: TaskAdapter = TaskAdapter()
     val presenter = HomePresenter(this)
 
-    val current = LocalDateTime.now()
+    var formatter: DateFormat = SimpleDateFormat("MM")
+    var dateNow = Date()
 
-    val formatter = DateTimeFormatter.ofPattern("MM")
-    val formatted = current.format(formatter)
-
-
+    var dateMonth = formatter.format(dateNow)
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -50,9 +50,11 @@ class HomeFragment : Fragment() {
         setTasks()
     }
 
+
+
     fun setTasks() {
         var monthNow =
-        when (formatted){
+        when (dateMonth){
             "01" -> "janurary"
             "02" -> "february"
             "03" -> "march"
