@@ -10,18 +10,22 @@
         android:id="@+id/spade"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/small_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:background="@color/pink"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Medium Text"
         android:id="@+id/month"
         android:layout_toRightOf="@+id/spade"
-        android:layout_alignBottom="@+id/task_description"
         android:textColor="@android:color/black"
-        android:padding="@dimen/small_margin"/>
+        android:paddingTop="@dimen/seven"
+        />
 
     <TextView
         android:layout_width="wrap_content"

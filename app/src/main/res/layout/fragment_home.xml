@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,8 +7,16 @@
     tools:context="com.example.jno14.moveggiesmoproblems.HomeFragment">
 
     <TextView
+        android:id="@+id/buffer"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/green"/>
+
+    <TextView
+        android:id="@+id/this_month"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/buffer"
         android:text="This Month..."
         android:textSize="@dimen/titles"
         android:textColor="#111111"/>
@@ -16,9 +24,13 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/home_list"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/this_month"
+        android:layout_alignTop="@+id/navigation"
         android:background="@drawable/border"
         android:padding="15dp"
+        android:layout_margin="@dimen/fab_margin"
         />
 
-</LinearLayout>
+
+</RelativeLayout>

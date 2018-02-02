@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/add_plot_fragment"
     android:layout_width="match_parent"
@@ -11,20 +11,27 @@
     tools:context="com.example.jno14.moveggiesmoproblems.AddPlotActivity">
 
     <TextView
+        android:id="@+id/buffer"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/green"/>
+
+    <TextView
         android:id="@+id/plotTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/buffer"
         android:text="@string/title_plot"
         android:textSize="@dimen/titles"
-        android:layout_gravity="top|center_horizontal"/>
+        android:padding="@dimen/titles"/>
 
     <Button
         android:id="@+id/add_plot_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/buffer"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        android:layout_gravity="top|end"
         android:text="@string/button_text_add_plot"
         android:background="@color/darkGreen"
         android:shadowColor="@color/shadow"/>
@@ -32,6 +39,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_plot_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/plotTitle"/>
 
-</LinearLayout>
+</RelativeLayout>
