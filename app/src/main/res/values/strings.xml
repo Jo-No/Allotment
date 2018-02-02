@@ -23,6 +23,7 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+
     <string name="title_activity_add_task">AddTaskActivity</string>
 
     <string name="description">Description</string>
@@ -35,5 +36,12 @@
     <string name="plantsHint">Plants</string>
     <string name="button_text_add_plot">Add Plot</string>
     <string name="button_text_add_task">Add Task</string>
+
+    <drawable name="pea_image">@drawable/pea</drawable>
+    <drawable name="carrot_image">@drawable/carrot</drawable>
+    <drawable name="lettuce_image">@drawable/lettuce</drawable>
+    <drawable name="potato_image">@drawable/potato</drawable>
+    <drawable name="tomato_image">@drawable/tomato</drawable>
+    <drawable name="squash_image">@drawable/squash</drawable>
 
 </resources>

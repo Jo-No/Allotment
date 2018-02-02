@@ -50,8 +50,6 @@ class HomeFragment : Fragment() {
         setTasks()
     }
 
-
-
     fun setTasks() {
         var monthNow =
         when (dateMonth){

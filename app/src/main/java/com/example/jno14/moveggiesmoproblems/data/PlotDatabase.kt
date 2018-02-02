@@ -2,6 +2,7 @@ package com.example.jno14.moveggiesmoproblems.data
 
 import android.arch.persistence.room.*
 import android.content.Context
+import android.media.Image
 import java.io.Serializable
 
 class PlotDatabase {
@@ -28,6 +29,7 @@ abstract class MyDatabase : RoomDatabase() {
 @Entity
 data class Plot(@ColumnInfo var plotName: String = "",
                 @ColumnInfo var plants: String = "",
+                @ColumnInfo var image: Int?,
                 @PrimaryKey(autoGenerate = true) var id: Long? = null) : Serializable
 
 @Dao

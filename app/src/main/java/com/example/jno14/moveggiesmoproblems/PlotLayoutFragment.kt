@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.jno14.moveggiesmoproblems.R.drawable.*
 import com.example.jno14.moveggiesmoproblems.data.Plot
 import com.example.jno14.moveggiesmoproblems.data.PlotDao
 import com.example.jno14.moveggiesmoproblems.data.PlotDatabase
@@ -66,12 +67,26 @@ class PlotLayoutFragment : Fragment() {
         intent.putExtra("plot", plot)
         startActivity(intent)
     }
+
+    fun setImage(plot: Plot){
+        plot.image =
+        when (plot.plants.toLowerCase()){
+            "tomato", "aubergine", "chilli" -> tomato_image
+            "potato" -> potato_image
+            "peas" -> pea_image
+            "roots", "onions", "parsnip", "carrot" -> carrot_image
+            else -> {
+                lettuce_image
+            }
+        }
+    }
 }
 
 
 class PlotLayoutPresenter(val view: PlotLayoutFragment, val repo: PlotRepository = PlotRepository.instance) : LifecycleObserver, OnPlotClickedListener {
     override fun onPlotClicked(plot: Plot) {
         view.startEditView(plot)
+        view.setImage(plot)
     }
 
     private var disposable: Disposable? = null

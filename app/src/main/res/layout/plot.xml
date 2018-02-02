@@ -4,11 +4,16 @@
     android:layout_height="wrap_content"
     android:padding="5dp">
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/vegimage"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/plot"
         android:textColor="@android:color/black"
         android:padding="@dimen/small_margin"/>
@@ -21,5 +26,4 @@
         android:textColor="@android:color/black"
         android:padding="@dimen/small_margin"
         android:layout_toRightOf="@+id/plot"/>
-
 </RelativeLayout>

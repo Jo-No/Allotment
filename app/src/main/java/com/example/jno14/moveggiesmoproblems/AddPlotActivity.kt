@@ -29,7 +29,7 @@ class AddPlotActivity : AppCompatActivity() {
                 plot_plants.text?.toString().isNullOrBlank() -> plot_plants.error = "Please enter some plants"
                 else -> {
 
-                    val plot = Plot(plotName = plot_name.text.toString(), plants = plot_plants.text.toString(), id = editPlot?.id)
+                    val plot = Plot(plotName = plot_name.text.toString(), plants = plot_plants.text.toString(), image = editPlot?.image, id = editPlot?.id)
 
                     if (editPlot != null) {
                         PlotRepository.instance.updatePlot(plot)
