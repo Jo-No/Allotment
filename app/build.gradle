@@ -9,7 +9,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.jno14.moveggiesmoproblems"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -51,6 +51,3 @@ dependencies {
     androidTestImplementation "android.arch.core:core-testing:$room_version"
 
 }
-
-
-apply plugin: 'com.google.gms.google-services'

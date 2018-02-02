@@ -30,11 +30,10 @@
     <string name="submit">Submit</string>
 
     <string name="add_plot">Add new plot</string>
-    <string name="plot_one">Plot 1</string>
-    <string name="plot_two">Plot 2</string>
-    <string name="plot_three">Plot 3</string>
-    <string name="plot_four">Plot 4</string>
-    <string name="plot_vegetables">Vegetables in this plot...</string>
-
+    <string name="taskHint">Task...</string>
+    <string name="nameHint">Name</string>
+    <string name="plantsHint">Plants</string>
+    <string name="button_text_add_plot">Add Plot</string>
+    <string name="button_text_add_task">Add Task</string>
 
 </resources>

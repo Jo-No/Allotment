@@ -1,6 +1,8 @@
 package com.example.jno14.moveggiesmoproblems
 
-import android.app.Activity
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.OnLifecycleEvent
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,18 +11,23 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import com.example.jno14.moveggiesmoproblems.data.Task
+import com.example.jno14.moveggiesmoproblems.data.TaskRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_monthly_jobs.*
 
-class MonthlyJobsFragment: Fragment() {
+class MonthlyJobsFragment : Fragment() {
 
     private var adapter: TaskAdapter = TaskAdapter()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private var presenter = TaskPresenter(this)
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        val inflatedView = inflater?.inflate(R.layout.fragment_monthly_jobs, container, false)
-        return inflatedView
+        return inflater.inflate(R.layout.fragment_monthly_jobs, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -29,33 +36,14 @@ class MonthlyJobsFragment: Fragment() {
         val layoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
+        adapter.listener = presenter
 
-        var addTaskButton: Button? = view?.findViewById(R.id.add_task_button)
-        addTaskButton?.setOnClickListener { _ ->
+        lifecycle.addObserver(presenter)
+
+        add_task_button?.setOnClickListener { _ ->
             val intent = Intent(context, AddTaskActivity::class.java)
             startActivityForResult(intent, ADD_TASK_REQUEST)
         }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == ADD_TASK_REQUEST && resultCode == Activity.RESULT_OK) {
-            val task = Task(data?.getStringExtra(DESCRIPTION_TEXT).orEmpty(), data?.getStringExtra(MONTH_TEXT).orEmpty())
-            adapter.addTask(task)
-        }
-    }
-
-    override fun onResume(){
-        super.onResume()
-
-        val tasks = TaskStorage.readData(activity.applicationContext)
-
-        if (tasks != null && (adapter.tasks.isEmpty())) adapter.tasks = tasks
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-        TaskStorage.writeData(context, adapter.tasks)
     }
 
     companion object {
@@ -64,28 +52,48 @@ class MonthlyJobsFragment: Fragment() {
         val MONTH_TEXT = "month"
     }
 
+    fun setTasks(newList: List<Task>) {
+        adapter.tasks = newList
+    }
+
+    fun editTasks(task: Task) {
+        val intent = Intent(activity, AddTaskActivity::class.java)
+        intent.putExtra("task", task)
+        startActivity(intent)
+    }
+
 }
 
+class TaskPresenter(val view: MonthlyJobsFragment, val repo: TaskRepository = TaskRepository.instance) : LifecycleObserver, OnButtonClickListener {
+    override fun onButtonClicked(task: Task) {
+        view.editTasks(task)
+    }
 
+    private var disposable: Disposable? = null
 
-//Taken from onCreate
-//        val spinner = findViewById<Spinner>(R.id.months_spinner)
-//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-//                val monthSelected = parent.getItemAtPosition(position).toString()
-//                if (monthSelected.equals("")) {
-//                } else {
-//                    TaskAdapter.performSorting(monthSelected)
-//                }
-//            }
-//          override fun onNothingSelected(parent: AdapterView<*>) {
-//            }
-//        }
-//        fun performSorting(monthSelected: String){
-//            //get spinner pos
-//            tasks.sortedBy { it.position.first }
-//            //reload
-//        }
-//        val dataAdapter = ArrayAdapter.createFromResource(this, R.array.months_array, android.R.layout.simple_spinner_item)
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        spinner.adapter = dataAdapter
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun start() {
+        disposable = repo.getFlowable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { success ->
+                            view.setTasks(success)
+                        },
+                        { error -> throw error }
+                )
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    fun stop() {
+        disposable?.dispose()
+    }
+}
+
+//completedCheckBox.setOnCheckedChangeListener { _, isChecked ->
+//    tasks[adapterPosition].completed = isChecked
+//    if (task.completed) {
+//        removeTask(task)
+//    }
+//}
+

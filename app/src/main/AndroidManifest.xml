@@ -3,7 +3,7 @@
     package="com.example.jno14.moveggiesmoproblems">
 
     <application
-        android:name=".PlotApp"
+        android:name=".data.AllotmentApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jno14.moveggiesmoproblems.AddTaskActivity">
+    tools:context="com.example.jno14.moveggiesmoproblems.AddTaskActivity"
+    android:background="@color/pink"
+    >
 
     <EditText
-        android:id="@+id/task_description"
+        android:id="@+id/edit_task_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/description"
+        android:hint="@string/taskHint"
         android:inputType="text"
+        android:paddingBottom="@dimen/fab_margin"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/month"
+        android:id="@+id/edit_month"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:editable="true"
         android:focusable="false"
         android:entries="@array/months_array"
-        app:layout_constraintTop_toBottomOf="@id/task_description" />
+        android:paddingBottom="@dimen/fab_margin"
+        app:layout_constraintTop_toBottomOf="@id/edit_task_description" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        app:layout_constraintTop_toBottomOf="@id/month" />
-</android.support.constraint.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@id/edit_month" />
+</LinearLayout>

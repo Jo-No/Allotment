@@ -1,24 +1,26 @@
 package com.example.jno14.moveggiesmoproblems
 
-import android.support.v4.app.Fragment
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.OnLifecycleEvent
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.jno14.moveggiesmoproblems.data.Plot
+import com.example.jno14.moveggiesmoproblems.data.PlotDao
+import com.example.jno14.moveggiesmoproblems.data.PlotDatabase
 import com.example.jno14.moveggiesmoproblems.data.PlotRepository
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_plot_layout.*
 
 class PlotLayoutFragment : Fragment() {
 
-    val adapter: PlotAdapter = PlotAdapter()
+    private val adapter: PlotAdapter = PlotAdapter()
 
     private val presenter = PlotLayoutPresenter(this)
 
@@ -37,8 +39,12 @@ class PlotLayoutFragment : Fragment() {
         recyclerView.adapter = adapter
         adapter.listener = presenter
 
-        lifecycle.addObserver(presenter)
+        Thread({
+        val plotDao: PlotDao = PlotDatabase.instance.database.plotDao()
+        plotDao.getAll()
+        }).start()
 
+        lifecycle.addObserver(presenter)
 
         add_plot_button.setOnClickListener {
             val intent = Intent(activity, AddPlotActivity::class.java)
@@ -57,7 +63,7 @@ class PlotLayoutFragment : Fragment() {
 
     fun startEditView(plot: Plot) {
         val intent = Intent(activity, AddPlotActivity::class.java)
-        intent.putExtra("plot",plot)
+        intent.putExtra("plot", plot)
         startActivity(intent)
     }
 }

@@ -5,26 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/green"
+    android:paddingLeft="@dimen/small_margin"
+    android:paddingRight="@dimen/small_margin"
     tools:context="com.example.jno14.moveggiesmoproblems.AddPlotActivity">
 
+    <TextView
+        android:id="@+id/plotTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_plot"
+        android:textSize="@dimen/titles"
+        android:layout_gravity="top|center_horizontal"/>
 
     <Button
         android:id="@+id/add_plot_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        android:gravity="bottom|end"
-        android:text="Add Plot" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_plot" />
+        android:layout_gravity="top|end"
+        android:text="@string/button_text_add_plot"
+        android:background="@color/darkGreen"
+        android:shadowColor="@color/shadow"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_plot_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"/>
 
 </LinearLayout>

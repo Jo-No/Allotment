@@ -5,21 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/pink"
     tools:context="com.example.jno14.moveggiesmoproblems.AddPlotActivity">
 
     <EditText
         android:id="@+id/plot_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
-        android:inputType="text" />
+        android:hint="@string/nameHint"
+        android:inputType="text"
+        android:paddingBottom="@dimen/fab_margin"/>
 
     <EditText
         android:id="@+id/plot_plants"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Plants"
-        android:inputType="text" />
+        android:hint="@string/plantsHint"
+        android:inputType="text"
+        android:paddingBottom="@dimen/fab_margin"/>
 
     <Button
         android:id="@+id/submit_plot"

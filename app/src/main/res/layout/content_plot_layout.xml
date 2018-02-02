@@ -19,58 +19,12 @@
                 android:id="@+id/plot_one_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/plot_one"/>
+                android:text=""/>
             <EditText
                 android:id="@+id/plot_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/plot_vegetables"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/plot_two_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/plot_two"/>
-            <EditText
-                android:id="@+id/plot_two"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/plot_vegetables"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/plot_three_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/plot_three"/>
-            <EditText
-                android:id="@+id/plot_three"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/plot_vegetables"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/plot_four_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/plot_four"/>
-            <EditText
-                android:id="@+id/plot_four"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/plot_vegetables"/>
-
+                android:hint=""/>
         </RelativeLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
