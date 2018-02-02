@@ -32,7 +32,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_plot_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
