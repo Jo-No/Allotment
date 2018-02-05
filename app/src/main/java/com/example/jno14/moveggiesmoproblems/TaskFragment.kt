@@ -17,7 +17,7 @@ import com.example.jno14.moveggiesmoproblems.data.TaskRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_monthly_jobs.*
+import kotlinx.android.synthetic.main.fragment_task.*
 
 class MonthlyJobsFragment : Fragment() {
 
@@ -28,7 +28,7 @@ class MonthlyJobsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        return inflater.inflate(R.layout.fragment_monthly_jobs, container, false)
+        return inflater.inflate(R.layout.fragment_task, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
