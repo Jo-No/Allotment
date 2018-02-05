@@ -8,10 +8,10 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.jno14.moveggiesmoproblems.R.drawable.*
 import com.example.jno14.moveggiesmoproblems.data.Plot
 import com.example.jno14.moveggiesmoproblems.data.PlotDao
 import com.example.jno14.moveggiesmoproblems.data.PlotDatabase
@@ -41,8 +41,8 @@ class PlotLayoutFragment : Fragment() {
         adapter.listener = presenter
 
         Thread({
-        val plotDao: PlotDao = PlotDatabase.instance.database.plotDao()
-        plotDao.getAll()
+            val plotDao: PlotDao = PlotDatabase.instance.database.plotDao()
+            plotDao.getAll()
         }).start()
 
         lifecycle.addObserver(presenter)
@@ -51,6 +51,7 @@ class PlotLayoutFragment : Fragment() {
             val intent = Intent(activity, AddPlotActivity::class.java)
             startActivity(intent)
         }
+        setRecyclerViewItemTouchListener()
     }
 
     companion object {
@@ -67,31 +68,51 @@ class PlotLayoutFragment : Fragment() {
         intent.putExtra("plot", plot)
         startActivity(intent)
     }
+
+    private fun setRecyclerViewItemTouchListener() {
+
+        val itemTouchCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, viewHolder1: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
+                val position = viewHolder.adapterPosition
+                removeSwipedPlot(adapter.plots.elementAt(position))
+                recycler_plot_layout.adapter.notifyDataSetChanged()
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
+        itemTouchHelper.attachToRecyclerView(recycler_plot_layout)
+    }
+
+    fun removeSwipedPlot(plot: Plot){
+        PlotRepository.instance.removePlot(plot)
+    }
+
+
+    class PlotLayoutPresenter(val view: PlotLayoutFragment, val repo: PlotRepository = PlotRepository.instance) : LifecycleObserver, OnPlotClickedListener {
+        override fun onPlotClicked(plot: Plot) {
+            view.startEditView(plot)
+        }
+
+        private var disposable: Disposable? = null
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_START)
+        fun start() {
+            disposable = repo.getFlowable()
+                    .subscribe(
+                            { success ->
+                                view.setPlotList(success)
+                            },
+                            { error -> throw error }
+                    )
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+        fun stop() {
+            disposable?.dispose()
+        }
+    }
 }
-
-
-class PlotLayoutPresenter(val view: PlotLayoutFragment, val repo: PlotRepository = PlotRepository.instance) : LifecycleObserver, OnPlotClickedListener {
-    override fun onPlotClicked(plot: Plot) {
-        view.startEditView(plot)
-    }
-
-    private var disposable: Disposable? = null
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun start() {
-        disposable = repo.getFlowable()
-                .subscribe(
-                        { success ->
-                            view.setPlotList(success)
-                        },
-                        { error -> throw error }
-                )
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun stop() {
-        disposable?.dispose()
-    }
-}
-
-//recycler_plot_layout

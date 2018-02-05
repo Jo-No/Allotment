@@ -1,11 +1,9 @@
 package com.example.jno14.moveggiesmoproblems
 
-import android.graphics.Canvas
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.jno14.moveggiesmoproblems.R.id.image
 import com.example.jno14.moveggiesmoproblems.data.Plot
 import kotlinx.android.synthetic.main.plot.view.*
 
