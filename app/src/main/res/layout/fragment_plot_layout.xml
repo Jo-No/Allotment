@@ -35,7 +35,7 @@
         android:id="@+id/add_plot_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/recycler_plot_layout"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
         android:text="@string/button_text_add_plot"
