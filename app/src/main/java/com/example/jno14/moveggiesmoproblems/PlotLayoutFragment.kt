@@ -6,7 +6,7 @@ import android.arch.lifecycle.OnLifecycleEvent
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
@@ -34,9 +34,9 @@ class PlotLayoutFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val gridLayoutManager = GridLayoutManager(context, 2)
         val recyclerView = recycler_plot_layout as RecyclerView
-        val layoutManager = LinearLayoutManager(context)
-        recyclerView.layoutManager = layoutManager
+        recyclerView.layoutManager = gridLayoutManager
         recyclerView.adapter = adapter
         adapter.listener = presenter
 
@@ -51,6 +51,7 @@ class PlotLayoutFragment : Fragment() {
             val intent = Intent(activity, AddPlotActivity::class.java)
             startActivity(intent)
         }
+
         setRecyclerViewItemTouchListener()
     }
 

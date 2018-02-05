@@ -34,7 +34,7 @@
     <string name="taskHint">Task...</string>
     <string name="nameHint">Name</string>
     <string name="plantsHint">Plants</string>
-    <string name="button_text_add_plot">Add Plot</string>
+    <string name="button_text_add_plot">+</string>
     <string name="button_text_add_task">Add Task</string>
 
     <drawable name="pea_image">@drawable/pea</drawable>
