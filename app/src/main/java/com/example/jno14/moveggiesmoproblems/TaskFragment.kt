@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +45,8 @@ class MonthlyJobsFragment : Fragment() {
             val intent = Intent(context, AddTaskActivity::class.java)
             startActivityForResult(intent, ADD_TASK_REQUEST)
         }
+
+        setRecyclerViewItemTouchListener()
     }
 
     companion object {
@@ -60,6 +63,28 @@ class MonthlyJobsFragment : Fragment() {
         val intent = Intent(activity, AddTaskActivity::class.java)
         intent.putExtra("task", task)
         startActivity(intent)
+    }
+
+    private fun setRecyclerViewItemTouchListener(){
+
+        val itemTouchCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, viewHolder1: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                removeSwipedTask(adapter.tasks.elementAt(position))
+                monthly_task_list.adapter.notifyDataSetChanged()
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
+        itemTouchHelper.attachToRecyclerView(monthly_task_list)
+    }
+
+    private fun removeSwipedTask(task: Task){
+        TaskRepository.instance.removeTask(task)
     }
 
 }
@@ -89,11 +114,4 @@ class TaskPresenter(val view: MonthlyJobsFragment, val repo: TaskRepository = Ta
         disposable?.dispose()
     }
 }
-
-//completedCheckBox.setOnCheckedChangeListener { _, isChecked ->
-//    tasks[adapterPosition].completed = isChecked
-//    if (task.completed) {
-//        removeTask(task)
-//    }
-//}
 
