@@ -29,11 +29,9 @@ class AddPlotActivity : AppCompatActivity() {
             when {
                 plot_name.text?.toString().isNullOrBlank() -> plot_name.error = "Please enter a name for this plot"
                 plot_plants.text?.toString().isNullOrBlank() -> plot_plants.error = "Please enter some plants"
-                width_spinner.text?.toString().isNullOrBlank() -> width_spinner.error = "Please choose a width"
                 else -> {
-
-                    val plot = Plot(plotName = plot_name.text.toString(), plants = plot_plants.text.toString(), width = width_spinner.text.toString().toInt(), id = editPlot?.id)
-
+                    val plot = Plot(plotName = plot_name.text.toString(), plants = plot_plants.text.toString(), id = editPlot?.id)
+//                    width = width_spinner.text.toString().toInt(),
                     if (editPlot != null) {
                         PlotRepository.instance.updatePlot(plot)
                     } else {

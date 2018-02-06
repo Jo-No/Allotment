@@ -35,7 +35,7 @@ class PlotLayoutFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val gridLayoutManager = StaggeredGridLayoutManager(6, StaggeredGridLayoutManager.HORIZONTAL)
+        val gridLayoutManager = StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL)
         val recyclerView = recycler_plot_layout as RecyclerView
         recyclerView.layoutManager = gridLayoutManager
         recyclerView.adapter = adapter
@@ -92,7 +92,6 @@ class PlotLayoutFragment : Fragment() {
     fun removeSwipedPlot(plot: Plot){
         PlotRepository.instance.removePlot(plot)
     }
-
 
     class PlotLayoutPresenter(val view: PlotLayoutFragment, val repo: PlotRepository = PlotRepository.instance) : LifecycleObserver, OnPlotClickedListener {
         override fun onPlotClicked(plot: Plot) {

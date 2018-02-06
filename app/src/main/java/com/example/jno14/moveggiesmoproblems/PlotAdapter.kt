@@ -18,8 +18,7 @@ class PlotAdapter : RecyclerView.Adapter<PlotAdapter.PlotViewHolder>() {
     var listener : OnPlotClickedListener? = null
 
     override fun onBindViewHolder(holder: PlotAdapter.PlotViewHolder, position: Int) {
-//        holder.plotWidth.height = getHeightInt(plots.elementAt(position))
-        holder.plotWidth.width = getWidthInt(plots.elementAt(position))
+//        holder.plotWidth.width = getWidthInt(plots.elementAt(position))
         holder.bindPlot(plots[position])
     }
 
@@ -36,7 +35,7 @@ class PlotAdapter : RecyclerView.Adapter<PlotAdapter.PlotViewHolder>() {
     inner class PlotViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val plotNameTextView = view.plot
         val plantsTextView = view.plants
-        val plotWidth = view.plot_width
+//        val plotWidth = view.plot_width
 
         fun bindPlot(plot: Plot) {
             view.setOnClickListener {
@@ -48,13 +47,9 @@ class PlotAdapter : RecyclerView.Adapter<PlotAdapter.PlotViewHolder>() {
         }
     }
 
-//    fun getHeightInt(plot: Plot): Int{
-//        return plot.height
+//    fun getWidthInt(plot: Plot): Int{
+//        return plot.width
 //    }
-
-    fun getWidthInt(plot: Plot): Int{
-        return plot.width
-    }
 }
 
 interface OnPlotClickedListener {
