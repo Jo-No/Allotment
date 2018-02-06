@@ -93,7 +93,6 @@ class PlotLayoutFragment : Fragment() {
         PlotRepository.instance.removePlot(plot)
     }
 
-
     class PlotLayoutPresenter(val view: PlotLayoutFragment, val repo: PlotRepository = PlotRepository.instance) : LifecycleObserver, OnPlotClickedListener {
         override fun onPlotClicked(plot: Plot) {
             view.startEditView(plot)
