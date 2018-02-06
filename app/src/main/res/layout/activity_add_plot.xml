@@ -30,6 +30,22 @@
         android:inputType="text"
         android:paddingBottom="@dimen/fab_margin"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/width_spinner"
+        android:hint="Width"
+        android:inputType="text"
+        android:paddingBottom="@dimen/fab_margin"/>
+
+    <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/height_spinner"-->
+        <!--android:hint="height"-->
+        <!--android:inputType="text"-->
+        <!--android:paddingBottom="@dimen/fab_margin"/>-->
+
     <Button
         android:id="@+id/submit_plot"
         android:layout_width="match_parent"
